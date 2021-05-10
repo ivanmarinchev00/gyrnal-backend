@@ -1,0 +1,19 @@
+stages:
+    - build
+    - test
+build:
+    stage: build
+    script:
+        - echo "Building"
+        - mkdir build
+        - cd build
+        - fsutil file createnew info.txt 0
+
+    artifacts:
+        paths: 
+            - build/
+test:
+    stage: test
+    script: 
+        - echo "Testing"
+        - Test-Path "build/info.txt" -PathType leaf
